@@ -38,9 +38,15 @@ class CatagoryController extends \yii\web\Controller
     $catagory = new Catagory();
 
     if ($catagory->load(Yii::$app->request->post())) {
+        //Validation
         if ($catagory->validate()) {
-            // form inputs are valid, do something here
-            return;
+            //Save Record
+            $catagory->save();
+
+            //Generate a save message
+            Yii::$app->getSession()->setFlash('success', 'Catagory Added');
+
+            return $this->redirect('index.php?r=catagory');
         }
     }
 
