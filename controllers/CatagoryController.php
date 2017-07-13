@@ -29,13 +29,25 @@ class CatagoryController extends \yii\web\Controller
 
         return $this->render('index', [
             'catagories' => $catagories,
-            'pagination' => $pagination
+            'pagination' => $pagination,
         ]);
     }
 
-    public function actionCreate(){
-        return $this->render('create');
+    public function actionCreate()
+{
+    $catagory = new Catagory();
+
+    if ($catagory->load(Yii::$app->request->post())) {
+        if ($catagory->validate()) {
+            // form inputs are valid, do something here
+            return;
+        }
     }
+
+    return $this->render('create', [
+        'catagory' => $catagory,
+    ]);
+}
 
    
 
