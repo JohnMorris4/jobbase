@@ -1,7 +1,11 @@
 <a class="success" href="/index.php?r=job">Back to Jobs</a>
 
 <h2 class="page-header"><?php echo $job->title; ?> - 
-    <small><?php echo $job->city; ?>, <?php echo $job->state; ?></small> </h2>
+    <small><?php echo $job->city; ?>, <?php echo $job->state; ?></small>
+    <span class="pull-right">
+        <a href="index.php?r=job/edit&id=<?php echo $job->id; ?>" class="btn btn-success">Edit Job</a>
+        <a href="index.php?r=job/delete&id=<?php echo $job->id; ?>" class="btn btn-danger">Delete Job</a>
+    </span> </h2>
 
 <?php if(!empty($job->description)) : ?>    
 <div class="well">

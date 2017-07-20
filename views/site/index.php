@@ -11,8 +11,8 @@ $this->title = 'JobBase Application';
 
         <p class="lead">Browse our current open jobs</p>
 
-        <p><a class="btn btn-lg btn-success" href="/jobs/index">Browse our jobs</a>
-        <a class="btn btn-lg btn-primary" href="/jobs/create">Create new Listing</a></p>
+        <p><a class="btn btn-lg btn-success" href="../job/index">Browse our jobs</a>
+        <a class="btn btn-lg btn-primary" href="../job/create">Create new Listing</a></p>
     </div>
 
     <div class="body-content">

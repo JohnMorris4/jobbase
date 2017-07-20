@@ -10,9 +10,9 @@ use yii\helpers\ArrayHelper;
 /* @var $form ActiveForm */
 ?>
 <div class="job-create">
-
+<h2 class="page-header">Create Job </h2>
     <?php $form = ActiveForm::begin(); ?>
-        <?=$form->errorSummary($job); ?>
+        <?=$form->errorSummary($job); ?>    
         <?= $form->field($job, 'catagory_id')
            ->dropDownList(Catagory::find()
             ->select(['name', 'id'])

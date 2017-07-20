@@ -39,8 +39,8 @@ class Job extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['catagory_id', 'user_id', 'title', 'description', 'type', 'requirements', 'salary_range', 'city', 'state', 'zipcode', 'contact_email'], 'required'],
-            [['catagory_id', 'user_id', 'is_published'], 'integer'],
+            [['catagory_id',  'title', 'description', 'type', 'requirements', 'salary_range', 'city', 'state', 'zipcode', 'contact_email'], 'required'],
+            [['catagory_id',  'is_published'], 'integer'],
             [['description'], 'string'],
             [['create_date'], 'safe'],
             [['title', 'type', 'requirements', 'salary_range', 'city', 'state', 'zipcode', 'contact_email', 'contact_phone'], 'string', 'max' => 255],
@@ -78,5 +78,6 @@ class Job extends \yii\db\ActiveRecord
 
     public function beforeSave($insert){
         $this->user_id = 1;
+        return parent::beforeSave($insert);
     }
 }
