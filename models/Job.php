@@ -67,12 +67,16 @@ class Job extends \yii\db\ActiveRecord
             'contact_email' => 'Contact Email',
             'contact_phone' => 'Contact Phone',
             'is_published' => 'Is Published',
-            'create_date' => 'Create Date',
+
         ];
     }
 
     public function getCatagory()
     {
         return $this->hasOne(Catagory::className(), ['id' => 'catagory_id']);
+    }
+
+    public function beforeSave($insert){
+        $this->user_id = 1;
     }
 }

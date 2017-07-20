@@ -11,7 +11,7 @@ use yii\widgets\LinkPager;
 <?php endif; ?>
 <ul class="list-group">
 <?php foreach($catagories as $catagory) : ?>
-    <li class="list-group-item"> <a href="/index.php?r=job&catagory="></a> </li>
+    <li class="list-group-item"> <a href="/index.php?r=job&catagory=<?php echo $catagory->id; ?>"></a><?php echo $catagory->name; ?> </li>
     <?php endforeach; ?>
 </ul>
 

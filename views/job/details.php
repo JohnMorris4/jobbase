@@ -21,5 +21,22 @@
 <?php if(!empty($job->catagory->name)) : ?>
     <li class="list-group-item"><strong>Category: </strong><?php echo $job->catagory->name; ?>   </li>
 <?php endif; ?>
-    
+
+<?php if(!empty($job->type)) : ?>
+		<li class="list-group-item"><strong>Employment Type:</strong> <?php echo ucwords(str_replace('_', ' ', $job->type)); ?></li>
+	<?php endif; ?>
+
+	<?php if(!empty($job->salary_range)) : ?>
+		<li class="list-group-item"><strong>Salary Range:</strong> <?php echo $job->salary_range; ?></li>
+	<?php endif; ?>
+
+	<?php if(!empty($job->contact_email)) : ?>
+		<li class="list-group-item"><strong>Contact Email:</strong> <?php echo $job->contact_email; ?></li>
+	<?php endif; ?>
+
+	<?php if(!empty($job->contact_phone)) : ?>
+		<li class="list-group-item"><strong>Contact Phone:</strong> <?php echo $job->contact_phone; ?></li>
+	<?php endif; ?>
 </ul>
+
+<a class="btn btn-primary" href="mailto:<?php echo $job->contact_email; ?>?Subject=Job%20Application">Contact Employer</a>
