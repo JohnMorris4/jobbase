@@ -12,7 +12,14 @@
 <?php endif; ?>
 
 <ul class="list-group">
+<?php if(!empty($job->create_date)) : ?>
+    <?php $phpdate = strtotime($job->create_date); ?>
+    <?php $formatted_date = date("F j, Y, g:i a", $phpdate); ?>
+    <li class="list-group-item"><strong>Listing Date: </strong><?php echo $job->create_date; ?>   </li>
+<?php endif; ?>
 
-
+<?php if(!empty($job->catagory->name)) : ?>
+    <li class="list-group-item"><strong>Category: </strong><?php echo $job->catagory->name; ?>   </li>
+<?php endif; ?>
     
 </ul>

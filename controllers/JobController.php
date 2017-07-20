@@ -26,7 +26,7 @@ class JobController extends \yii\web\Controller
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
-
+        //Render The View
         return $this->render('index', [
             'jobs' => $jobs,
             'pagination' => $pagination,
@@ -34,10 +34,12 @@ class JobController extends \yii\web\Controller
     }
 
     public function actionDetails($id)
+        //Get Job
     {
         $job = Job::find()
             ->where(['id'=>$id])
             ->one(); 
+        //RENDER THE VIEW
         return $this->render('details', ['job'=> $job]);
     }
 

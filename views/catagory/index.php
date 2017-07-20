@@ -10,10 +10,10 @@ use yii\widgets\LinkPager;
     </div>
 <?php endif; ?>
 <ul class="list-group">
-<?php
-foreach($catagories as $catagory) : ?>
-<li class="list-group-item"> <a href="/index.php?r=job&category<?php echo $catagory->id; ?>"> <?php echo $catagory->name ; ?></a> </li>
-<?php endforeach ?>
+<?php foreach($catagories as $catagory) : ?>
+    <li class="list-group-item"> <a href="/index.php?r=job&catagory="></a> </li>
+    <?php endforeach; ?>
 </ul>
 
-<?= LinkPager::widget (['pagination'=> $pagination]); 
+<?= LinkPager::widget(['pagination' => $pagination]) ;
+
