@@ -7,6 +7,9 @@
         <a href="index.php?r=job/edit&id=<?php echo $job->id; ?>" class="btn btn-success">Edit Job</a>
         <a href="index.php?r=job/delete&id=<?php echo $job->id; ?>" class="btn btn-danger">Delete Job</a>
     </span> </h2>
+    <?php elseif (Yii::$app->user->identity->id != $job->user_id) : ?>
+    	<h2 class="page-header">You are not a registered user</h2>
+    	
 		<?php endif; ?>
 <?php if(!empty($job->description)) : ?>    
 <div class="well">
