@@ -22,7 +22,7 @@ class UserController extends \yii\web\Controller
             $user->save();
 
             //Generate a save message
-            Yii::$app->getSession()->setFlash('success', 'User created and can now lon in');
+            Yii::$app->getSession()->setFlash('success', 'User created and can now log in');
 
             return $this->redirect('index.php');
         }

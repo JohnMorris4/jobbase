@@ -23,6 +23,18 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string|int $id the ID to be looked for
      * @return IdentityInterface|null the identity object that matches the given ID.
      */
+ public function rules()
+    {
+        return [
+            // name, email, subject and body are required
+            [['full_name', 'email', 'username', 'password', 'password_repeat'], 'required'],
+            // email has to be a valid email address
+            ['email', 'email'],
+            // Compare passwords
+            ['password_repeat', 'compare', 'compareAttribute' => 'password'],
+        ];
+    }
+
     public static function findIdentity($id)
     {
         return static::findOne($id);
@@ -62,5 +74,18 @@ class User extends ActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
         return $this->getAuthKey() === $authKey;
+    }
+
+    public function beforeSave($insert){
+        if(parent::beforeSave($insert)){
+            if($this->isNewRecord){
+                $this->auth_key = \yii::$app->security->generateRandomString();
+            }
+            if(isset ($this->password)){
+                $this->password = md5($this->password);
+                return  parent::beforeSave($insert);
+            }
+        }
+        return true;
     }
 }
