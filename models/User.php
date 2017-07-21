@@ -67,6 +67,13 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->auth_key;
     }
 
+    public function validatePassword($password){
+        return $this->password = md5($password);
+    }
+
+    public function findByUsername($username){
+        return User::findOne(['username' => $username]);
+    }
     /**
      * @param string $authKey
      * @return bool if auth key is valid for current user
@@ -87,5 +94,10 @@ class User extends ActiveRecord implements IdentityInterface
             }
         }
         return true;
+    }
+
+    public function getJob()
+    {
+        return $this->hasMany(Job::className(), ['user_id' => 'id']);
     }
 }

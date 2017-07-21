@@ -3,10 +3,11 @@
 <h2 class="page-header"><?php echo $job->title; ?> - 
     <small><?php echo $job->city; ?>, <?php echo $job->state; ?></small>
     <span class="pull-right">
+    <?php if(Yii::$app->user->identity->id == $job->user_id) : ?>
         <a href="index.php?r=job/edit&id=<?php echo $job->id; ?>" class="btn btn-success">Edit Job</a>
         <a href="index.php?r=job/delete&id=<?php echo $job->id; ?>" class="btn btn-danger">Delete Job</a>
     </span> </h2>
-
+		<?php endif; ?>
 <?php if(!empty($job->description)) : ?>    
 <div class="well">
     <h4>Job Description</h4>

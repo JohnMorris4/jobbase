@@ -13,6 +13,23 @@ use app\models\Catagory;
 
 class JobController extends \yii\web\Controller
 {
+
+    public function behaviors(){
+        return[
+            'access' => [
+                'class' => AccessControl::className(),
+                'only'  => ['create', 'edit', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['create', 'edit', 'delete'],
+                        'allow'   => true,
+                        'roles'   => ['@'],
+                    ],
+                ],
+            ]
+        ];
+    }
+
     public function actionIndex(){
         //Create the Query String
         $query = Job::find();
@@ -66,6 +83,11 @@ class JobController extends \yii\web\Controller
     public function actionDelete($id)
     {
         $job = Job::findOne($id);
+
+         if(Yii::$app->user->identity->id != $job->user_id){
+                return $this->redirect('index.php?r=job');
+        }
+
         $job->delete();
         //show message
         Yii::$app->getSession()->setFlash('success', 'Job Deleted');
@@ -74,9 +96,12 @@ class JobController extends \yii\web\Controller
         
     }
 
-    public function actionEdit($id)
-    {
+    public function actionEdit($id){
         $job = Job::findOne($id);
+        //check job->id == user->id
+        if(Yii::$app->user->identity->id != $job->user_id){
+                return $this->redirect('index.php?r=job');
+        }
          if ($job->load(Yii::$app->request->post())) {
                 if ($job->validate()) {
                 //Save the form data
