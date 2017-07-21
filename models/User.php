@@ -10,6 +10,8 @@ use yii\base\Security;
 
 class User extends ActiveRecord implements IdentityInterface
 {
+    public $password_repeat;
+    
     public static function tableName()
     {
         return '{{%tbl_user}}';
